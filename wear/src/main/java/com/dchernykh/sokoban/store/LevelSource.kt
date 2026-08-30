@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
  * The shipped collection, read from the files the Zepp OS app shipped.
  *
  * An interface, so a JVM test can hand the view model a couple of warehouses
- * instead of an emulator and 690KB of assets.
+ * instead of an emulator and 680KB of assets.
  */
 interface LevelSource {
     /** How many warehouses this size holds. */
