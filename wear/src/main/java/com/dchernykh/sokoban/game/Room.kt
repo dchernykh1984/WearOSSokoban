@@ -93,9 +93,11 @@ fun spreadGoals(
     val buckets = LinkedHashMap<Int, MutableList<Int>>()
     for (cell in candidates) buckets.getOrPut(sectorOf(level, cell, divisions)) { mutableListOf() }.add(cell)
 
+    // Down to one, not to zero: the last sector has only itself to swap with, and
+    // drawing for it would consume a number the original never spent - which would
+    // put every warehouse after it on a different seed.
     val order = buckets.keys.toMutableList()
-    for (i in order.indices.reversed()) {
-        if (i == 0) break
+    for (i in order.lastIndex downTo 1) {
         val j = random.nextInt(i + 1)
         val swap = order[i]
         order[i] = order[j]
