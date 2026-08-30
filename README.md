@@ -66,11 +66,12 @@ Building one is a search, so it runs on a background dispatcher a round at a tim
 with a bar on screen; a pause on the main thread would be a frozen watch rather than
 a thinking one.
 
-The **solver** is here too, though nothing in the game needs it: an optimal
+The **solver** is here too, in the test source set rather than the app: an optimal
 breadth-first search over pushes, with the keeper normalised to the region it can
-reach and crates frozen in corners pruned. It is what the tests use to confirm the
-shipped collection is not trivially easy - a warehouse that falls over in four
-pushes is not worth playing, however big it is.
+reach and crates frozen in corners pruned. Nothing on the watch ever solves a
+warehouse - that is the player's job - but it is what the tests use to confirm the
+shipped collection is not trivially easy, a warehouse that falls over in four pushes
+not being worth playing however big it is.
 
 ## Devices
 
@@ -120,8 +121,6 @@ wear/
     game/Direction.kt                  the four ways to step
     game/LevelFormat.kt                the pictures the collection is written as
     game/Walking.kt                    flood fills, paths, and what a run touches
-    game/Solver.kt                     the fewest pushes a warehouse can be done in
-    game/Quality.kt                    whether a warehouse is a good puzzle
     game/Room.kt                       the room and where the crates have to end up
     game/Generator.kt                  reverse play, and the certificate it leaves
     game/Building.kt                   building one a round at a time, with a bar
@@ -138,7 +137,9 @@ wear/
     store/ProgressStore.kt             progress, on Preferences DataStore
     ui/                                the Compose screens
   src/main/res/values*/strings.xml     the screen strings, a table per language
-  src/test/                            JVM unit tests, the solver included
+  src/test/                            JVM unit tests
+    game/Solver.kt                     the fewest pushes a warehouse can be done in
+    game/Quality.kt                    whether a warehouse is a good puzzle
   src/androidTest/                     instrumented tests - what needs a device
 tools/make-launcher-icons.sh           regenerates the icon from the Zepp OS one
 config/detekt/detekt.yml               static-analysis overrides

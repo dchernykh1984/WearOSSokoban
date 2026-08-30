@@ -148,11 +148,10 @@ kover {
         }
         verify {
             rule {
-                // What is left is the rule set, the solver, the generator, the
-                // level format, the save format, the round-screen geometry, the
-                // map camera and the view model that drives them - all plain
-                // Kotlin, and none of it with any excuse for being uncovered. The
-                // suite sits at 99%.
+                // What is left is the rule set, the generator, the level format,
+                // the save format, the round-screen geometry, the map camera and
+                // the view model that drives them - all plain Kotlin, and none of
+                // it with any excuse for being uncovered. The suite sits at 98%.
                 minBound(80)
             }
         }

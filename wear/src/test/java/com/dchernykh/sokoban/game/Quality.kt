@@ -2,6 +2,11 @@ package com.dchernykh.sokoban.game
 
 // Measuring whether a warehouse is a good PUZZLE, as opposed to a valid one.
 //
+// This is a vetting tool, not game code, which is why it lives in the test source
+// set: the shipped collection was measured by it on a computer before it shipped,
+// and the tests here measure it again. Nothing on the watch asks any of these
+// questions - by the time a warehouse reaches a player it has already been judged.
+//
 // The generator already guarantees a level can be finished, and the solver already
 // rejects levels that fall over in a couple of pushes. Neither catches the three
 // ways a technically-correct level can still be a poor one, all of which turned up
@@ -17,6 +22,29 @@ package com.dchernykh.sokoban.game
 // All three are cheap to measure and none of them need a solver, which matters: on
 // the big sizes the solver cannot finish, so these are the only quality signals
 // available there.
+
+/** Distances from one cell to every other across the floor, ignoring crates. */
+fun floorDistances(
+    level: Level,
+    from: Int,
+): IntArray {
+    val distance = IntArray(level.cells) { -1 }
+    distance[from] = 0
+    val queue = ArrayDeque<Int>()
+    queue.addLast(from)
+
+    while (queue.isNotEmpty()) {
+        val index = queue.removeFirst()
+        for (direction in Direction.entries) {
+            val next = level.step(index, direction)
+            if (next >= 0 && !level.isWall(next) && distance[next] == -1) {
+                distance[next] = distance[index] + 1
+                queue.addLast(next)
+            }
+        }
+    }
+    return distance
+}
 
 /** Everything worth knowing about a warehouse's shape, in one pass. */
 data class Shape(
