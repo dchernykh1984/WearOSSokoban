@@ -196,7 +196,7 @@ private fun PlayControls(
     for ((box, direction) in arrows) {
         ArrowButton(box = box, direction = direction, metrics = metrics, label = direction.name) {
             viewModel.step(direction)
-            follow(viewModel, game, window, direction)
+            follow(viewModel, window)
         }
     }
 
@@ -208,16 +208,24 @@ private fun PlayControls(
  * Drag the map along behind the keeper when it walks towards the edge of the window,
  * the way a navigator scrolls ahead of you - and leave a map deliberately dragged
  * elsewhere where it was put.
+ *
+ * Where the keeper actually is afterwards, not where the step was aimed: a step into
+ * a wall moves nothing, and a map that slid anyway would answer a tap that the rules
+ * had already refused.
  */
 private fun follow(
     viewModel: SokobanViewModel,
-    game: Game,
     window: BoardWindow,
-    direction: Direction,
 ) {
+    val game = viewModel.uiState.value.game ?: return
     val level = game.level
-    val at = level.step(game.player, direction).takeIf { it >= 0 } ?: game.player
     val moved =
-        followCamera(viewModel.camera(), window, Grid(level.cols, level.rows), level.columnOf(at), level.rowOf(at))
+        followCamera(
+            viewModel.camera(),
+            window,
+            Grid(level.cols, level.rows),
+            level.columnOf(game.player),
+            level.rowOf(game.player),
+        )
     viewModel.moveCamera(moved.x, moved.y)
 }
