@@ -25,7 +25,7 @@ const val MAX_ATTEMPTS = 24
  * puzzles; dragging one crate a long way and then moving on is what creates the
  * tangles that have to be unpicked in a particular order.
  */
-private const val SAME_BOX_BIAS = 0.6f
+private const val SAME_BOX_BIAS = 0.6
 
 /**
  * How much of the floor a puzzle has to actually use.
@@ -133,7 +133,7 @@ private fun choosePull(
     if (usable.isEmpty()) return null
 
     val sameBox = if (last == null) emptyList() else usable.filter { it.slot == last.slot }
-    return if (sameBox.isNotEmpty() && random.nextFloat() < SAME_BOX_BIAS) {
+    return if (sameBox.isNotEmpty() && random.next() < SAME_BOX_BIAS) {
         random.pick(sameBox)
     } else {
         random.pick(usable)
