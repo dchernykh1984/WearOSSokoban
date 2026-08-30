@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Сокобан</string>
+    <string name="play">Играть</string>
+    <string name="continue_game">Продолжить</string>
+    <string name="generating">Создаю...</string>
+    <string name="source_builtin">Готовые</string>
+    <string name="source_random">Случайные</string>
+    <string name="moves">Ходы</string>
+    <string name="best">Рекорд</string>
+    <string name="size_label">Размер</string>
+    <string name="source_label">Карты</string>
+    <string name="undo">Назад</string>
+    <string name="menu">Меню</string>
+    <string name="restart">Заново</string>
+    <string name="new_game">Новый</string>
+    <string name="resume">Дальше</string>
+    <string name="solved">Решено!</string>
+    <string name="new_best">Рекорд!</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Сокобан</string>
+    <string name="play">Ойнау</string>
+    <string name="continue_game">Жалғастыру</string>
+    <string name="generating">Жасалуда...</string>
+    <string name="source_builtin">Дайын</string>
+    <string name="source_random">Кездейсоқ</string>
+    <string name="moves">Жүріс</string>
+    <string name="best">Рекорд</string>
+    <string name="size_label">Өлшем</string>
+    <string name="source_label">Карталар</string>
+    <string name="undo">Кері</string>
+    <string name="menu">Мәзір</string>
+    <string name="restart">Қайта</string>
+    <string name="new_game">Жаңа</string>
+    <string name="resume">Жалғастыру</string>
+    <string name="solved">Шешілді!</string>
+    <string name="new_best">Жаңа рекорд</string>
+</resources>

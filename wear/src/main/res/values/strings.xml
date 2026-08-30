@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The screen strings, in the eleven languages the Zepp OS original shipped.
+     Android resolves the watch's locale to the right table on its own, so
+     Kazakh - which Zepp OS had no device-language code for - finally reaches the
+     people it was translated for.
+
+     Adding a language means adding one values-<code>/strings.xml with every key
+     below; Android Lint's MissingTranslation check is an error here, so a table
+     that is short of a key fails the build rather than falling back silently.
+
+     The six size labels are letters only (XS through XXL) and the move counts
+     are digits, so neither needs translating: they are formatted in code. -->
+<resources>
+    <!-- The name the launcher shows, and the title over the start menu. -->
+    <string name="app_name">Box Pusher</string>
+    <string name="play">Play</string>
+    <!-- Picks up the warehouse left half-finished, which is saved after every step. -->
+    <string name="continue_game">Continue</string>
+    <!-- Shown while the watch builds a warehouse, which takes a moment on the largest sizes. -->
+    <string name="generating">Building...</string>
+    <!-- Where a warehouse comes from: the shipped collection, or one the watch builds on the spot. -->
+    <string name="source_builtin">Built-in</string>
+    <string name="source_random">Random</string>
+    <string name="moves">Moves</string>
+    <string name="best">Best</string>
+    <!-- The captions over the two pickers on the start menu. -->
+    <string name="size_label">Size</string>
+    <string name="source_label">Levels</string>
+    <!-- The two buttons flanking the down arrow are drawn as icons, not lettered,
+         so these are what a screen reader is told about them. -->
+    <string name="undo">Undo</string>
+    <string name="menu">Menu</string>
+    <string name="restart">Restart</string>
+    <string name="new_game">New</string>
+    <string name="resume">Resume</string>
+    <string name="solved">Solved!</string>
+    <string name="new_best">New best!</string>
+    <!-- The counter over the board: how many crates are home out of the total,
+         and how many steps that has taken. Digits and punctuation only, exactly as
+         the Zepp OS original drew it - the word "Moves" is on the solved screen,
+         where there is room for it. -->
+    <string name="counter_value" translatable="false">%1$d/%2$d   %3$d</string>
+    <string name="moves_value" translatable="false">%1$s %2$d</string>
+    <string name="best_value" translatable="false">%1$s %2$s</string>
+    <!-- The value can be a dash rather than a number: a size nobody has finished has no best to show. -->
+    <string name="no_score" translatable="false">-</string>
+</resources>

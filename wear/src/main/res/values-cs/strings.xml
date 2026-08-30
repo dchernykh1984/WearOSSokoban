@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sokoban</string>
+    <string name="play">Hrát</string>
+    <string name="continue_game">Pokračovat</string>
+    <string name="generating">Tvorba...</string>
+    <string name="source_builtin">Hotové</string>
+    <string name="source_random">Náhodné</string>
+    <string name="moves">Tahy</string>
+    <string name="best">Rekord</string>
+    <string name="size_label">Velikost</string>
+    <string name="source_label">Úrovně</string>
+    <string name="undo">Zpět</string>
+    <string name="menu">Menu</string>
+    <string name="restart">Znovu</string>
+    <string name="new_game">Nová</string>
+    <string name="resume">Pokračovat</string>
+    <string name="solved">Vyřešeno!</string>
+    <string name="new_best">Nový rekord</string>
+</resources>
