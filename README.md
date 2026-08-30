@@ -48,7 +48,7 @@ translations are carried over unchanged; the implementation is new.
 
 The collection ships as six plain-text `.sok` files in
 `wear/src/main/assets/levels/`, copied unchanged from the Zepp OS app - 1,000 each
-at XS, S and M, 500 at L, 300 at XL and 200 at XXL, 690KB in all. A test reads every
+at XS, S and M, 500 at L, 300 at XL and 200 at XXL, 680KB in all. A test reads every
 one of the 4,000: it parses it, checks it re-encodes to the same picture, and checks
 it is a warehouse the rules can be played on - a solid border, as many crates as
 goals, nothing standing in a wall and something still left to do.
