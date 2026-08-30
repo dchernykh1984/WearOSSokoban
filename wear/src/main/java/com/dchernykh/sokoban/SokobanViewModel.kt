@@ -127,6 +127,14 @@ class SokobanViewModel(
                     _uiState.update { it.copy(canContinue = false) }
                     return@launch
                 }
+                // The save carries its own size and source, which may not be the
+                // ones on the menu. They become the current setup, so quitting
+                // afterwards leaves the menu on the size that was just played -
+                // and the dealt index is dropped, because it is a position in a
+                // collection that may no longer be the one in play.
+                store.writeSize(saved.size)
+                store.writeSource(saved.source)
+                dealtIndex = -1
                 _uiState.update {
                     it.copy(
                         screen = Screen.PLAYING,
