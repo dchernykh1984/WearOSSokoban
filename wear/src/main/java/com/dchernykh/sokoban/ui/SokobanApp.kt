@@ -133,14 +133,20 @@ private fun Modifier.mapGestures(
             var travelled = 0f
             var dx = 0f
             var dy = 0f
+            var onTheBoard = false
             detectDragGestures(
-                onDragStart = {
+                onDragStart = { offset ->
+                    // Only a finger that went down on the window drags the map. The
+                    // arrows are outside it, and a thumb that slides while pressing
+                    // one is aiming a step, not moving the warehouse.
+                    onTheBoard = (offset.x.roundToInt() to offset.y.roundToInt()) in window.box
                     start = viewModel.camera()
                     travelled = 0f
                     dx = 0f
                     dy = 0f
                 },
             ) { change, drag ->
+                if (!onTheBoard) return@detectDragGestures
                 travelled += abs(drag.x) + abs(drag.y)
                 dx += drag.x
                 dy += drag.y
