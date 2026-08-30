@@ -151,7 +151,7 @@ kover {
                 // What is left is the rule set, the generator, the level format,
                 // the save format, the round-screen geometry, the map camera and
                 // the view model that drives them - all plain Kotlin, and none of
-                // it with any excuse for being uncovered. The suite sits at 98%.
+                // it with any excuse for being uncovered. The suite sits at 99%.
                 minBound(80)
             }
         }

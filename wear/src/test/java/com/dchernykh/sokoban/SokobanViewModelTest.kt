@@ -511,6 +511,23 @@ class SokobanViewModelTest {
         }
 
     @Test
+    fun `makes the size it picked up the one the menu is left on`() =
+        runTest(dispatcher) {
+            val store = FakeStore()
+            var game = Game.newGame(parseLevel("#######\n#@$--.#\n#######")!!)
+            game = game.moved(Direction.RIGHT)!!
+            store.save = encodeSave(Size.L, Source.GENERATED, game)
+
+            val model = viewModel(store)
+            advanceUntilIdle()
+            model.continueGame()
+            advanceUntilIdle()
+
+            assertEquals(Size.L, store.size)
+            assertEquals(Source.GENERATED, store.source)
+        }
+
+    @Test
     fun `stops offering to continue when the save has gone`() =
         runTest(dispatcher) {
             val store = FakeStore()
