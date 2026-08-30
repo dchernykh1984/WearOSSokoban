@@ -188,10 +188,12 @@ private fun PlayControls(
             controls.left to Direction.LEFT,
             controls.right to Direction.RIGHT,
         )
-    // One size for all four and for the two icons beside them, worked out from the
-    // tightest button, so the whole row reads as one set of controls rather than as
-    // four symbols that happen to point different ways.
-    val metrics = remember(controls) { arrowMetrics(arrows.map { it.first } + controls.undo + controls.menu) }
+    // One size for all four arrows, worked out from the tightest of their buttons,
+    // so they read as one set of controls rather than as four symbols that happen to
+    // point different ways. The two icons beside them take the same stroke weight,
+    // because a hairline icon next to a thick arrow looks like a different app drew
+    // it.
+    val metrics = remember(controls) { arrowMetrics(arrows.map { it.first }) }
 
     for ((box, direction) in arrows) {
         ArrowButton(box = box, direction = direction, metrics = metrics, label = direction.name) {
