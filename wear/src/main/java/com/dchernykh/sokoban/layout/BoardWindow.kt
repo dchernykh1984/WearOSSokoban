@@ -27,7 +27,10 @@ data class BoardWindow(
     val cell: Int,
     /** How many cells are on screen at once, which is not how big the warehouse is. */
     val cells: Int,
-)
+) {
+    /** The window as a box, for asking whether a finger landed on the map. */
+    val box: Box get() = Box(x, y, size, size)
+}
 
 /** The window for a screen of this diameter, showing this many cells across. */
 fun boardWindow(

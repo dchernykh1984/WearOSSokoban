@@ -353,3 +353,18 @@ class ControlsTest {
             one.y < other.y + other.h &&
             other.y < one.y + one.h
 }
+
+class WindowBoxTest {
+    @Test
+    fun `knows whether a finger landed on the map`() {
+        val window = boardWindow(WATCH, Size.M.visible)
+        val controls = controlLayout(WATCH, window)
+
+        assertTrue((WATCH / 2 to WATCH / 2) in window.box)
+        // Every control is outside it, which is what keeps a drag that starts on an
+        // arrow from moving the warehouse out from under the step it was aiming at.
+        for (box in listOf(controls.up, controls.down, controls.left, controls.right, controls.undo, controls.menu)) {
+            assertFalse("(${box.x}, ${box.y}) is on the map", (box.x + box.w / 2 to box.y + box.h / 2) in window.box)
+        }
+    }
+}
