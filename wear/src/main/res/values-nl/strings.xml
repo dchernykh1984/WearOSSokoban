@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sokoban</string>
+    <string name="play">Spelen</string>
+    <string name="continue_game">Doorgaan</string>
+    <string name="generating">Bouwen...</string>
+    <string name="source_builtin">Meegeleverd</string>
+    <string name="source_random">Willekeurig</string>
+    <string name="moves">Zetten</string>
+    <string name="best">Record</string>
+    <string name="size_label">Grootte</string>
+    <string name="source_label">Niveaus</string>
+    <string name="undo">Terug</string>
+    <string name="menu">Menu</string>
+    <string name="restart">Opnieuw</string>
+    <string name="new_game">Nieuw</string>
+    <string name="resume">Verder</string>
+    <string name="solved">Opgelost!</string>
+    <string name="new_best">Nieuw record</string>
+</resources>

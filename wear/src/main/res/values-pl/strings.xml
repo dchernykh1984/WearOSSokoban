@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sokoban</string>
+    <string name="play">Graj</string>
+    <string name="continue_game">Kontynuuj</string>
+    <string name="generating">Tworzenie...</string>
+    <string name="source_builtin">Gotowe</string>
+    <string name="source_random">Losowe</string>
+    <string name="moves">Ruchy</string>
+    <string name="best">Rekord</string>
+    <string name="size_label">Rozmiar</string>
+    <string name="source_label">Poziomy</string>
+    <string name="undo">Cofnij</string>
+    <string name="menu">Menu</string>
+    <string name="restart">Od nowa</string>
+    <string name="new_game">Nowy</string>
+    <string name="resume">Wznów</string>
+    <string name="solved">Rozwiązane!</string>
+    <string name="new_best">Nowy rekord</string>
+</resources>
