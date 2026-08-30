@@ -245,9 +245,9 @@ class SokobanViewModel(
     fun restart() {
         val state = _uiState.value
         if (state.screen != Screen.PLAYING && state.screen != Screen.PAUSED) return
-        val game = state.game ?: return
-        _uiState.update { it.copy(screen = Screen.PLAYING, game = game.restarted(), recenter = it.recenter + 1) }
-        save(game.restarted())
+        val fresh = state.game?.restarted() ?: return
+        _uiState.update { it.copy(screen = Screen.PLAYING, game = fresh, recenter = it.recenter + 1) }
+        save(fresh)
     }
 
     private fun commit(game: Game) {
