@@ -62,22 +62,31 @@ private fun quality(generated: Generated): Float {
 fun stepBuild(build: Build): Build {
     if (build.done) return build
 
-    val round = build.round + 1
     val generated = generateLevel(build.size, build.seed + build.round * 0x9E3779B1.toInt())
-    val best =
-        when {
-            generated == null -> build.best
-            build.best == null || quality(generated) > quality(build.best) -> generated
-            else -> build.best
-        }
+    val accepted = generated != null && isGoodEnough(generated, build.size)
+    val round = build.round + 1
 
-    val finished = (generated != null && isGoodEnough(generated, build.size)) || round >= build.rounds
     return Build(
         size = build.size,
         seed = build.seed,
         rounds = build.rounds,
         round = round,
-        best = if (generated != null && isGoodEnough(generated, build.size)) generated else best,
-        done = finished,
+        best = keep(build.best, generated, accepted),
+        // Stop the moment a round clears the bar; otherwise keep going until the
+        // rounds run out and settle for the best that was seen.
+        done = accepted || round >= build.rounds,
     )
 }
+
+/** Which of the two warehouses the run carries forward. */
+private fun keep(
+    best: Generated?,
+    generated: Generated?,
+    accepted: Boolean,
+): Generated? =
+    when {
+        accepted -> generated
+        generated == null -> best
+        best == null || quality(generated) > quality(best) -> generated
+        else -> best
+    }
