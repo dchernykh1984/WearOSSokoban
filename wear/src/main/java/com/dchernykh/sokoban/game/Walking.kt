@@ -55,29 +55,6 @@ fun isFloorConnected(
     return floor.all { seen[it] }
 }
 
-/** Distances from one cell to every other across the floor, ignoring crates. */
-fun floorDistances(
-    level: Level,
-    from: Int,
-): IntArray {
-    val distance = IntArray(level.cells) { -1 }
-    distance[from] = 0
-    val queue = ArrayDeque<Int>()
-    queue.addLast(from)
-
-    while (queue.isNotEmpty()) {
-        val index = queue.removeFirst()
-        for (direction in Direction.entries) {
-            val next = level.step(index, direction)
-            if (next >= 0 && !level.isWall(next) && distance[next] == -1) {
-                distance[next] = distance[index] + 1
-                queue.addLast(next)
-            }
-        }
-    }
-    return distance
-}
-
 /** The direction that steps from one cell to a neighbouring one, or null. */
 fun directionBetween(
     level: Level,

@@ -2,6 +2,11 @@ package com.dchernykh.sokoban.game
 
 // An optimal Sokoban solver.
 //
+// A vetting tool, not game code, which is why it lives in the test source set: the
+// shipped collection was put through it on a computer before it shipped, and the
+// tests here put it through again. Nothing on the watch ever solves a warehouse -
+// that is the player's job.
+//
 // The generator already guarantees a level CAN be finished - it built the level
 // backwards from a solved one and hands over the certificate. What it cannot tell
 // you is whether the puzzle is any good. This answers the one question the

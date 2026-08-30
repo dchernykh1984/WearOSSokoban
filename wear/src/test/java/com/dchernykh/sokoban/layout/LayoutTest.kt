@@ -368,3 +368,56 @@ class WindowBoxTest {
         }
     }
 }
+
+class ArrowMetricsTest {
+    private val window = boardWindow(WATCH, Size.M.visible)
+    private val layout = controlLayout(WATCH, window)
+    private val boxes = listOf(layout.up, layout.down, layout.left, layout.right, layout.undo, layout.menu)
+
+    @Test
+    fun `gives every control the same arrow, whatever shape its button is`() {
+        // The whole point of one shared size: four arrows that are the same read as
+        // one set of controls, and four that are not read as clutter.
+        val metrics = arrowMetrics(boxes)
+
+        assertTrue(metrics.reach > 0)
+        assertTrue(metrics.width >= 2)
+    }
+
+    @Test
+    fun `keeps the arrow inside the tightest button it has to fit`() {
+        for (screen in SCREENS) {
+            val here = controlLayout(screen, boardWindow(screen, Size.M.visible))
+            val row = listOf(here.up, here.down, here.left, here.right, here.undo, here.menu)
+            val metrics = arrowMetrics(row)
+
+            for (box in row) {
+                val midX = box.x + box.w / 2
+                val midY = box.y + box.h / 2
+                val bleed = metrics.reach + metrics.width / 2
+                assertTrue(
+                    "an arrow overhangs a $screen button ${box.w}x${box.h}",
+                    midX - bleed >= box.x &&
+                        midX + bleed <= box.x + box.w &&
+                        midY - bleed >= box.y &&
+                        midY + bleed <= box.y + box.h,
+                )
+            }
+        }
+    }
+
+    @Test
+    fun `is decided by the smallest button, not the largest`() {
+        val alone = arrowMetrics(listOf(layout.left))
+        val together = arrowMetrics(boxes)
+
+        assertTrue("the shared arrow is no bigger than the tightest button allows", together.reach <= alone.reach)
+    }
+
+    @Test
+    fun `has nothing to draw without a button to draw it in`() {
+        assertEquals(ArrowMetrics(0, 0), arrowMetrics(emptyList()))
+        assertEquals(ArrowMetrics(0, 0), arrowMetrics(listOf(Box(0, 0, 0, 0))))
+        assertEquals(ArrowMetrics(0, 0), arrowMetrics(listOf(Box(0, 0, 1, 1))))
+    }
+}
