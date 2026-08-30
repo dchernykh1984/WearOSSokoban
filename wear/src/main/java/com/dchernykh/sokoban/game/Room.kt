@@ -48,7 +48,12 @@ fun carveWalls(
     var tries = 0
     while (tries < wanted * BLOCK_TRIES && placed < wanted) {
         tries += 1
-        val index = (1 + random.nextInt(rows - 2)) * cols + 1 + random.nextInt(cols - 2)
+        // The column is drawn before the row, which is not arbitrary: the two draws
+        // come off one stream, so swapping them builds a different warehouse from
+        // the same seed.
+        val col = 1 + random.nextInt(cols - 2)
+        val row = 1 + random.nextInt(rows - 2)
+        val index = row * cols + col
         if (!walls[index]) {
             walls[index] = true
             if (isFloorConnected(cols, rows, walls)) placed += 1 else walls[index] = false
@@ -96,7 +101,10 @@ fun spreadGoals(
     // Down to one, not to zero: the last sector has only itself to swap with, and
     // drawing for it would consume a number the original never spent - which would
     // put every warehouse after it on a different seed.
-    val order = buckets.keys.toMutableList()
+    // Ascending, then shuffled. The order the sectors start in decides what the
+    // shuffle turns them into, and taking them in the order the candidates happened
+    // to arrive would make that depend on where the walls fell.
+    val order = buckets.keys.sorted().toMutableList()
     for (i in order.lastIndex downTo 1) {
         val j = random.nextInt(i + 1)
         val swap = order[i]
